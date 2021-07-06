@@ -71,7 +71,14 @@ Current/inputs/input.txt
 REPLICABILITY IN PROGRESS 4/13/2021
 
 ## Simulating policy experiments
+[Ivan please add description of procedure here]
 REPLICABILITY IN PROGRESS 4/13/2021
 
 ## Producing tables and figures
+[Ivan please improve on the description of the procedures here]
+### Analysing Reform impacts
+After producing simulations under the old and the new systems, run Dofiles/Analysis/ReformImpacts/reform-imp.do
+### Analysing Counterfactuals
+After producing simulations under different counterfactuals, run Dofiles/Analysis/Counterfactuals/counterfactuals2.do
+
 REPLICABILITY IN PROGRESS 4/13/2021
