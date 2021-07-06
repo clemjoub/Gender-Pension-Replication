@@ -1,4 +1,4 @@
-Initidir /Data/wb452275/Gender-Pension-Replication, Sourcedir Current, Dir, Test
+Initidir /mnt/d/Gender/New1345671112, Sourcedir Current, Dir, Test
 Start: Current date and time %s\n 
  pre evfun
  evfun
@@ -6124,15 +6124,15 @@ Start: Current date and time %s\n
  family #        6107
  family #        6108
  family #        6109
- Fraction of type           1 :  0.376662066179688     
- Fraction of type           2 :  0.215386945837681     
- Fraction of type           3 :  0.238630625778436     
- Fraction of type           4 :  0.169320362204194     
+ Fraction of type           1 :  0.37709172410306535     
+ Fraction of type           2 :  0.21199507928750780     
+ Fraction of type           3 :  0.24114861562831769     
+ Fraction of type           4 :  0.16976458098110919     
  allocated tsimdata
  end of evfun
  past evfun
- MSM criterion==   4793.99166742160     
+ MSM criterion==   5002.5854302350626     
  counterloop           1
- starting time           6 :          26 :          47
- finish time           6 :          27 :          39
- elapsed wall clock time:  0.859316666666644     
+ starting time          19 :          18 :           0
+ finish time          19 :          19 :          50
+ elapsed wall clock time:   1.83789062    

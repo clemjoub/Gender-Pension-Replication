@@ -11,7 +11,7 @@
   0.999000000000000      discount rate
           75 max number of regressors in emax approx
            0 indicator for whether to do the simulation part
-        2 number of people to simulate
+    2 number of people to simulate
            0 number of draws in the likelihood estimation part
            0 number of draws in simulation based on data
   0.000000000000000E+000 tau smoothing parameter

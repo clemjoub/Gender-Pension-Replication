@@ -73,7 +73,7 @@ do
 	for up in 0 2 
 	do
 		## Chose parameters for which gradient is being computed
-#		paramlist=`cat notexist$up` #subset of parameters for which the gradient was not computed yet 
+		#  paramlist=`cat notexist$up` #subset of parameters for which the gradient was not computed yet 
 		paramlist=" 0 "  			#0 when not computing the gradient
 		echo "$paramlist"	
 		
@@ -218,7 +218,7 @@ do
         			sed -i 's@silent=.@silent='"$SIL"'@'            		./source/prog1.f90
 	
 			echo "Compile code"
-				mpif90 -check bounds -r8 -heap-arrays -O2 -implicitnone  ./source/prog1.f90 -o b.out
+				mpif90 -k8 -O2 -fimplicit-none -fno-range-check -ffree-line-length-1024 -Wno-error  ./source/prog1.f90 -o b.out
 				$INITDIR/routines/patch.pl b.out
 				diff $INITDIR/$SOURCEDIR/source/prog1.f90 $DIR/source/prog1.f90 > $INITDIR/Logs/out.$pe$par$up
 	

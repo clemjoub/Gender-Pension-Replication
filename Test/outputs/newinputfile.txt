@@ -4,20 +4,20 @@
            4 Total number of kids possible
         3000 Actual number of states used in calculating emax
           10 Number of Monte Carlo draws used in emax
-   185331.000000000      Seed for random epsilon draws
-   555553.000000000      Seed for generating simulated people
-   548997.000000000      Seed for other use
+   185331.00000000000      Seed for random epsilon draws
+   555553.00000000000      Seed for generating simulated people
+   548997.00000000000      Seed for other use
            4 Number of types
-  0.999000000000000      discount rate
+  0.99900000000000000      discount rate
           75 max number of regressors in emax approx
            0 indicator for whether to do the simulation part
            2 number of people to simulate
            0 number of draws in the likelihood estimation part
            0 number of draws in simulation based on data
-  0.000000000000000E+000 tau smoothing parameter
-   1.00000000000000      contraction factor (simplex parameter)
-  0.000000000000000E+000 FTOL - simplex parameter
-  0.000000000000000E+000 RTOL - simplex parameter
+   0.0000000000000000      tau smoothing parameter
+   1.00000000     contraction factor (simplex parameter)
+   0.0000000000000000      FTOL - simplex parameter
+   0.0000000000000000      RTOL - simplex parameter
            0 maximum number of simplex iterations
          -1.69994087          -2.70000000          -0.30000000           1.00000000   1     alpha(1) - crra coefficient                       
          -1.70000000          -2.70000000          -0.30000000           1.00000000   0     alpha(1) - crra coefficient                       
@@ -193,11 +193,11 @@
           0.00000000         -99.00000000         -99.00000000           0.00000000   0     alpha(130) - correlation of shocks e5 and e6      
           0.00000000         -99.00000000         -99.00000000           0.00000000   0     alpha(131) - correlation of shocks e5 and e7      
           0.00000000         -99.00000000         -99.00000000           0.00000000   0     alpha(132) - correlation of shocks e6 and e7      
-  0.000000000000000E+000 *********************************
-  0.000000000000000E+000 *  specify regressors           *
-  0.000000000000000E+000 *  to include in the emax       *
-  0.000000000000000E+000 *  calculation (1=yes,0=no)     *
-  0.000000000000000E+000 *********************************
+   0.00000000     *********************************
+   0.00000000     *  specify regressors           *
+   0.00000000     *  to include in the emax       *
+   0.00000000     *  calculation (1=yes,0=no)     *
+   0.00000000     *********************************
 1                                  intercept                1
 0                                                           2
 0                                                           3
@@ -273,11 +273,11 @@
 1                                                          73
 1                                                          74
 1                                                          75
-  0.000000000000000E+000 **********************
-  0.000000000000000E+000 * interaction        *
-  0.000000000000000E+000 * terms in emax      *
-  0.000000000000000E+000 * approx             *
-  0.000000000000000E+000 **********************
+   0.00000000     **********************
+   0.00000000     * interaction        *
+   0.00000000     * terms in emax      *
+   0.00000000     * approx             *
+   0.00000000     **********************
    5        5
    5       30
    5       31

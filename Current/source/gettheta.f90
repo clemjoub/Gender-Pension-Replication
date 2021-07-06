@@ -1,22 +1,21 @@
 
-      !------------------------- REPORTRES ---------------------------------
+!------------------------- REPORTRES ---------------------------------
 
-	SUBROUTINE ReportRes(thetam,sevm,rsqv,rsqcvv, &
-        mptype,Sbar,Tbar,numz,numint,totp,nedraw,intmat,reform,pathoutput,ktp)
-
+SUBROUTINE ReportRes(thetam,sevm,rsqv,rsqcvv, &
+	mptype,Sbar,Tbar,numz,numint,totp,nedraw,intmat,reform,pathoutput,ktp)
 	
 	integer, parameter :: numper=75
-        integer, parameter :: ncoeff=75
+	integer, parameter :: ncoeff=75
 
 	integer Sbar,Tbar,kidmax,numz,totp,group,ktp
 	real(8) vseed(3)
-        integer vl,nedraw,nmc,FTbar
+	integer vl,nedraw,nmc,FTbar
 	integer simul,nsimul
 	real(8) disc
         
-        character*200::pathoutput
+	character*200::pathoutput
 
-        integer myid,numprocs,mptype
+	integer myid,numprocs,mptype
 
 	integer i,j,kk,cntr,intmat(75,75),numint,ind
 	integer intv(numint,2),jj
@@ -34,7 +33,7 @@
 	! first put the location of the interactions into intv
 	! so they can be put to the output file
 	
-        write(*,*) 'writing coefficients to output files'
+	write(*,*) 'writing coefficients to output files'
 
 	intv=0
 	ind = 0
@@ -44,11 +43,9 @@
 	        ind = ind +1
 	        intv(ind,1)=i
 	        intv(ind,2)=j
-	     end if
-	     
+	     end if	     
 	  end do loopj
 	end do loopi
-
 
 	! specify labels of variables
 
@@ -128,154 +125,147 @@
 	vn(74)=''
 	vn(75)=''
 
-        ! write to different files depending on pre or post reform
-        if (mptype.eq.1) then 
-	if (reform.eq.0) then
-	    open(unit=300,file=adjustl(trim(pathoutput))//'../inputs/pretheta',status='UNKNOWN',action='WRITE')
-            rewind(unit=300)
-          else
-	    open(unit=300,file=adjustl(trim(pathoutput))//'../inputs/posttheta',status='UNKNOWN',action='WRITE')
-            rewind(unit=300)
-          end if
+	! write to different files depending on pre or post reform
+	if (mptype.eq.1) then 
+		if (reform.eq.0) then
+			open(unit=300,file=adjustl(trim(pathoutput))//'../inputs/pretheta',status='UNKNOWN',action='WRITE')
+				rewind(unit=300)
+		else
+			open(unit=300,file=adjustl(trim(pathoutput))//'../inputs/posttheta',status='UNKNOWN',action='WRITE')
+				rewind(unit=300)
+	    end if
 	endif
 
-!	if (mptype.eq.1) then 
- !	  !open(unit=200,file=adjustl(trim(pathoutput))//'output.type1',status='UNKNOWN',action='WRITE')
-  !        !rewind(unit=200)
-   !       if (reform.eq.0) then
-!	    open(unit=300,file=adjustl(trim(pathoutput))//'pretheta.type1',status='UNKNOWN',action='WRITE')
- !           rewind(unit=300)
-  !        else
-!	    open(unit=300,file=adjustl(trim(pathoutput))//'posttheta.type1',status='UNKNOWN',action='WRITE')
- !           rewind(unit=300)
-  !        end if
-!	end if
+	!	if (mptype.eq.1) then 
+	!		open(unit=200,file=adjustl(trim(pathoutput))//'output.type1',status='UNKNOWN',action='WRITE')
+	!		rewind(unit=200)
+	!       if (reform.eq.0) then
+	!	    	open(unit=300,file=adjustl(trim(pathoutput))//'pretheta.type1',status='UNKNOWN',action='WRITE')
+	!           rewind(unit=300)
+	!       else
+	!	    	open(unit=300,file=adjustl(trim(pathoutput))//'posttheta.type1',status='UNKNOWN',action='WRITE')
+	!           	rewind(unit=300)
+	!       end if
+	!	end if
 
-!	if (mptype.eq.2) then 
-!	!open(unit=200,file=adjustl(trim(pathoutput))//'output.type2',status='UNKNOWN',action='WRITE')
- !       !rewind(unit=200)
-  !        if (reform.eq.0) then
-!	    open(unit=300,file=adjustl(trim(pathoutput))//'pretheta.type2',status='UNKNOWN',action='WRITE')
- !           rewind(unit=300)
-  !        else
-!	    open(unit=300,file=adjustl(trim(pathoutput))//'posttheta.type2',status='UNKNOWN',action='WRITE')
- !           rewind(unit=300)
-  !        end if
-!	end if
+	!	if (mptype.eq.2) then 
+	!	open(unit=200,file=adjustl(trim(pathoutput))//'output.type2',status='UNKNOWN',action='WRITE')
+	!       rewind(unit=200)
+	!       if (reform.eq.0) then
+	!	    	open(unit=300,file=adjustl(trim(pathoutput))//'pretheta.type2',status='UNKNOWN',action='WRITE')
+	!       	rewind(unit=300)
+	!       else
+	!	    	open(unit=300,file=adjustl(trim(pathoutput))//'posttheta.type2',status='UNKNOWN',action='WRITE')
+	!           rewind(unit=300)
+	!       end if
+	!	end if
 
- !	if (mptype.eq.3) then 
-!	!open(unit=200,file='output.type3',status='UNKNOWN',action='WRITE')
- !       !rewind(unit=200)
-  !        if (reform.eq.0) then
-!	     open(unit=300,file=adjustl(trim(pathoutput))//'pretheta.type3',status='UNKNOWN',action='WRITE')
- !            rewind(unit=300)
-  !        else
-!	     open(unit=300,file=adjustl(trim(pathoutput))//'posttheta.type3',status='UNKNOWN',action='WRITE')
- !            rewind(unit=300)
-  !        end if
-!	end if
+	!	if (mptype.eq.3) then 
+	!		open(unit=200,file='output.type3',status='UNKNOWN',action='WRITE')
+	!       	rewind(unit=200)
+	!   	if (reform.eq.0) then
+	!		     open(unit=300,file=adjustl(trim(pathoutput))//'pretheta.type3',status='UNKNOWN',action='WRITE')
+	!   	        rewind(unit=300)
+	!   	else
+	!		     open(unit=300,file=adjustl(trim(pathoutput))//'posttheta.type3',status='UNKNOWN',action='WRITE')
+	!       	    rewind(unit=300)
+	!   	end if
+	!	end if
 
-!
-!
-!	write(200,*) 'total number of histories:',totp
-!	write(200,*) 'number of state variables (max):',numz
-!	write(200,*) 'number histories used in calculating emax', &
-!        nedraw
-!	write(200,*) '--------------------------'
-!        write(200,*) 'Estimated thetas'
-!
-!        Loopth1: do i = (Tbar-15),(35-15),-1  
-!
-!	
-!         	 write(200,*) '--------------------------'
-!		 write(200,*) 'mothers age',i
-! 
-!         
-!      loopc: do jj = 1,7
-!	     kk = (jj-1)*4+1
-!
-!	     if (jj.le.6) then	    
-!	     write(200,*) '      ',vn(kk),vn(kk+1),vn(kk+2),vn(kk+3)
-!	     write(200,16) (thetam(i,j),j=kk,kk+3)
-! 	     write(200,16) (sevm(i,j),j=kk,kk+3)
-!	     else
-!	     write(200,*) '      ',vn(kk)
-!	     write(200,16) (thetam(i,j),j=kk,kk)
-! 	     write(200,16) (sevm(i,j),j=kk,kk)
-!		 end if
-!	     write(200,*) ' '
-!
-!	end do loopc
-!
-!	if (ind.gt.0) then
-!	write(200,*) 'INTERACTION TERMS'
-!	kk = 1
-!	jj = ncoeff+1
-!	x = numint
-!	do while (x.ge.4)
-!	      write(200,21) (intv(j,1),intv(j,2),'     ',j=kk,kk+3)
-!	      write(200,16) (thetam(i,j),j=jj,jj+3)
-!	      write(200,16) (sevm(i,j),j=jj,jj+3)
-!	      write(200,*) ' '
-!	      x=x-4
-!	      jj = jj+4
-!	      kk=kk+4
-!	end do
-!
-!	if (x.gt.0) then
-! 	write(200,21) (intv(j,1),intv(j,2),'     ',j=kk,kk+x-1)
-!	write(200,16) (thetam(i,j),j=kk,kk+x-1)
-!	write(200,16) (sevm(i,j),j=kk,kk+x-1)
-!	write(200,*) ' '
-!	end if
-!	    
-!	end if
-!
-!	write(200,*) '------------------------ --'
-!      write(200,*) 'R-square, CV R-square'
-!	write(200,18) rsqv(i,1),rsqcvv(i,1)		
-!      write(200,*) '--------------------------'
-!	     
-!	    
-!	end do Loopth1
-!
-!	
-!	close(unit=200)
+	!
+	!
+	!	write(200,*) 'total number of histories:',totp
+	!	write(200,*) 'number of state variables (max):',numz
+	!	write(200,*) 'number histories used in calculating emax', &
+	!        nedraw
+	!	write(200,*) '--------------------------'
+	!   write(200,*) 'Estimated thetas'
+	!
+	!   Loopth1: do i = (Tbar-15),(35-15),-1  
+	!
+	!	
+	!   	write(200,*) '--------------------------'
+	!		write(200,*) 'mothers age',i
+	! 
+	!         
+	!       loopc: do jj = 1,7
+	!
+	!	    	kk = (jj-1)*4+1
+	!
+	!	    	if (jj.le.6) then	    
+	!	    	write(200,*) '      ',vn(kk),vn(kk+1),vn(kk+2),vn(kk+3)
+	!	    	write(200,16) (thetam(i,j),j=kk,kk+3)
+	! 	    	write(200,16) (sevm(i,j),j=kk,kk+3)
+	!	    	else
+	!	    	write(200,*) '      ',vn(kk)
+	!	    	write(200,16) (thetam(i,j),j=kk,kk)
+	! 	    	write(200,16) (sevm(i,j),j=kk,kk)
+	!			end if
+	!
+	!	    	write(200,*) ' '
+	!
+	!		end do loopc
+	!
+	!		if (ind.gt.0) then
+	!
+	!			write(200,*) 'INTERACTION TERMS'
+	!			kk = 1
+	!			jj = ncoeff+1
+	!			x = numint
+	!			do while (x.ge.4)
+	!	    	    write(200,21) (intv(j,1),intv(j,2),'     ',j=kk,kk+3)
+	!	    	    write(200,16) (thetam(i,j),j=jj,jj+3)
+	!	      		write(200,16) (sevm(i,j),j=jj,jj+3)
+	!	      		write(200,*) ' '
+	!	      		x=x-4
+	!	      		jj = jj+4
+	!	      		kk=kk+4
+	!			end do
+	!
+	!			if (x.gt.0) then
+	! 				write(200,21) (intv(j,1),intv(j,2),'     ',j=kk,kk+x-1)
+	!				write(200,16) (thetam(i,j),j=kk,kk+x-1)
+	!				write(200,16) (sevm(i,j),j=kk,kk+x-1)
+	!				write(200,*) ' '
+	!			end if
+	!	    
+	!		end if
+	!
+	!		write(200,*) '------------------------ --'
+	!       write(200,*) 'R-square, CV R-square'
+	!		write(200,18) rsqv(i,1),rsqcvv(i,1)		
+	!      	write(200,*) '--------------------------'
+	!	     
+	!	end do Loopth1
+	!
+	!	close(unit=200)
+	!
+	!	write(*,*) 'finished writing output to output files'
 
-
-!	write(*,*) 'finished writing output to output files'
-
-
-20    format(5a16)
-21    format(i10,i3,a10,i3,i3,a10,i3,i3,a10,i3,i3,a10,i3,i3,a10)
-16    format(4f16.4)
-17    format(3f16.4)
-18    format(f16.4)
-19    format(40f16.4)
-
-
+	20  format(5a16)
+	21  format(i10,i3,a10,i3,i3,a10,i3,i3,a10,i3,i3,a10,i3,i3,a10)
+	16  format(4f16.4)
+	17  format(3f16.4)
+	18  format(f16.4)
+	19  format(40f16.4)
 
 	xxloop: do xx = 1,numper
-	grouploop: do group =1,3
-	zzloop: do zz = 1,numz
+		grouploop: do group =1,3
+			zzloop: do zz = 1,numz
 
-	    write(300,*) thetam(xx,group,zz)
+				write(300,*) thetam(xx,group,zz)
 
-    	end do zzloop 
+			end do zzloop 
     	end do grouploop
 	end do xxloop
 	
-        if (mptype.eq.ktp) close(unit=300)
+    if (mptype.eq.ktp) close(unit=300)
 
-
-22      format(f24.8)
-
+	22  format(f24.8)
 
 	return 
-        end subroutine ReportRes
-     
-     
-
+	
+end subroutine ReportRes
 
 !----------------------------- GETTOGV --------------------------
 ! This subroutine creates a vector of indicator variables
@@ -283,7 +273,7 @@
 ! values (i.e. whether it should be used in the regression)
 
 
-    subroutine GetTogV(ct,Z,togv,nnz,intmat,regind,totp,numint,numv,silent)
+subroutine GetTogV(ct,Z,togv,nnz,intmat,regind,totp,numint,numv,silent)
 
     implicit none
 
@@ -296,7 +286,7 @@
     togv = 0
     rk = 0.0d-0
 
-!Toggle on all non-zero columns
+	!Toggle on all non-zero columns
 
     Loop1: do j = 1,nnz
         i = 1
@@ -308,28 +298,28 @@
         end do
     end do Loop1
 
-!Toggle off columns with only one non-zero element (in case they are later interacted this would create collinearity)
+	!Toggle off columns with only one non-zero element (in case they are later interacted this would create collinearity)
     
     do j=1,nnz
-    A=count(Z(:,j).ne.0.0d-0)
-    if(A.gt.0.and.A.lt.10) then
-        togv(j)=0
-        if (silent.ne.1) print*,"too few non-zeros for regressor",j
-    endif
+		A=count(Z(:,j).ne.0.0d-0)
+		if(A.gt.0.and.A.lt.10) then
+			togv(j)=0
+			if (silent.ne.1) print*,"too few non-zeros for regressor",j
+		endif
     enddo
     
-! "manually" toggle off some colinear regressors:
+	! "manually" toggle off some colinear regressors:
 
     do j=1,4
-    B=count(Z(:,35+j).ne.1.0d-0.and.Z(:,34+j).eq.1.0d-0)
-    if(B.lt.10) then
-        togv(30+j)=0
-        togv(77+j)=0
-        if (silent.ne.1) print*,"noone in apvsegment",30+j
-    endif
+		B=count(Z(:,35+j).ne.1.0d-0.and.Z(:,34+j).eq.1.0d-0)
+		if(B.lt.10) then
+			togv(30+j)=0
+			togv(77+j)=0
+			if (silent.ne.1) print*,"noone in apvsegment",30+j
+		endif
     enddo
     
-! Toggle off regressors as read from input file and stored in "regind"
+	! Toggle off regressors as read from input file and stored in "regind"
 
     bloop: do i = 1,75
         if (regind(i).eq.0) then
@@ -338,18 +328,19 @@
     end do bloop
 
 
-! Compute number of regressors actually used in regression
+	! Compute number of regressors actually used in regression
     numv = sum(togv) 
 
-16      format(7f8.4)   
+	16  format(7f8.4)   
 
     return
-    end subroutine GetTogV
+	
+end subroutine GetTogV
 
 
-    !------------------------ GETTHETA ------------------------------------
+!------------------------ GETTHETA ------------------------------------
 
-     subroutine GetTheta(o,ct,Z,emaxv,theta,togv,sevec, Rsq,nedraw,totp,numz,numv,flag1,pathoutput,group,typ,ref,silent)
+subroutine GetTheta(o,ct,Z,emaxv,theta,togv,sevec, Rsq,nedraw,totp,numz,numv,flag1,pathoutput,group,typ,ref,silent)
 
     ! This subroutine takes the state values and the calculated
     ! emaxv values and returns the thetam parameters. This theta 
@@ -358,7 +349,7 @@
 
     implicit none
 
- !   external matpd,dmatinv 
+	! external matpd,dmatinv 
     
     integer ct,totp,simul,nsimul,nedraw,group,typ,ref,silent
     real(8) disc
@@ -385,7 +376,7 @@
 
     56  format(2f10.2)
 
-! initialize
+	! initialize
 
     X = 0.0d-0
     XP=0.0d-0
@@ -398,12 +389,11 @@
     theta = 0.0d-0
     sevec=0.0d-0
 
-! subset of data to use for regression 
+	! subset of data to use for regression 
 
-    ZS = Z(1:nedraw,1:numz) 
-    
+    ZS = Z(1:nedraw,1:numz)     
 
-! Populate vector X with only non-excluded regressors:
+	! Populate vector X with only non-excluded regressors:
 
     tt = 0	
     Loop3: do j = 1,numz
@@ -416,37 +406,35 @@
           XP(tt,1:nedraw)=ZS(1:nedraw,j)	
        end if
     end do Loop3 
-
      
-! compute the X'X and X'Y matrices, passing only the nonzero
-! columns (or rows in the case of X-prime)
-! store results in xpx and xpy
+	! compute the X'X and X'Y matrices, passing only the nonzero
+	! columns (or rows in the case of X-prime)
+	! store results in xpx and xpy
 
     semaxv(1:nedraw,1)=emaxv(1:nedraw,1)
 
     call matpd(numv,nedraw,numv,XP,X,xpx)
     call matpd(numv,nedraw,1,XP,semaxv,xpy)
 
-! solve for beta in (X'X) * beta = X'Y 
+	! solve for beta in (X'X) * beta = X'Y 
 
     temp = xpy
     xpxi=xpx
     xpxt = xpx
-    call dmatinv(xpxt,xpxi,numv)	
+    call dmatinv(xpxt,xpxi,numv)
 
-
-! check that we got the inverse
+	! check that we got the inverse
 
     call matpd(numv,numv,numv,xpxi,xpx,checki)
     flag1 = 0
     iloop: do i = 1,numv
-    dist1 = dabs(checki(i,i)-1.0d-0)
-    if (dist1.gt.0.001d-0) then
-        flag1 = 1 
-        !write(*,*) '**** problem with the inverse', dist1
-        cycle iloop
-        ! Output emax and regressors (before exclusion of 0s and collinear vectors) for stata analysis 
-    end if
+		dist1 = dabs(checki(i,i)-1.0d-0)
+		if (dist1.gt.0.001d-0) then
+			flag1 = 1 
+			!write(*,*) '**** problem with the inverse', dist1
+			cycle iloop
+			! Output emax and regressors (before exclusion of 0s and collinear vectors) for stata analysis 
+		end if
     end do iloop
     
     if (flag1.eq.1) then
@@ -465,44 +453,44 @@
         99 format(I1)	
     endif
 
-! if we got the correct inverse, calculcate xpxi*xpy
-! and store in temp
+	! if we got the correct inverse, calculcate xpxi*xpy
+	! and store in temp
 
     call matpd(numv,numv,1,xpxi,xpy,temp)
 
-! read estimated regression coefficients into the theta matrix,
-! where now the elements correspond to the original vectors of Z
-! and we assign a coefficient equal to 0 for the columns of Z
-! that were all zero
+	! read estimated regression coefficients into the theta matrix,
+	! where now the elements correspond to the original vectors of Z
+	! and we assign a coefficient equal to 0 for the columns of Z
+	! that were all zero
 
     ind = 1
     sevec=0.0d-0
     Loop4: do i = 1,numz
-    if (togv(i).eq.1) then
-       theta(1,i)=temp(ind,1)
-       sevec(1,i)=xpxi(ind,ind)
-       ind = ind+1
-    end if
+		if (togv(i).eq.1) then
+		   theta(1,i)=temp(ind,1)
+		   sevec(1,i)=xpxi(ind,ind)
+		   ind = ind+1
+		end if
     end do Loop4
 
-! calculate the predicted values from the regression
+	! calculate the predicted values from the regression
 
     call matpd(nedraw,numv,1,X,temp,predval)
 
-! calculate the residuals and the error and
-! total sum of squares
+	! calculate the residuals and the error and
+	! total sum of squares
 
     SSE1 = 0.0d-0
     SST1 = 0.0d-0
     ybar1(:,1)=sum(semaxv(:,1))/nedraw
     res = 0.0d-0
     Loop11: do i = 1,nedraw
-     res(i,1)=semaxv(i,1)-predval(i,1)
-     SSE1 = SSE1 + res(i,1)*res(i,1)
-     SST1 = SST1 + (semaxv(i,1)-ybar1(i,1))*(semaxv(i,1)-ybar1(i,1))
+		res(i,1)=semaxv(i,1)-predval(i,1)
+		SSE1 = SSE1 + res(i,1)*res(i,1)
+		SST1 = SST1 + (semaxv(i,1)-ybar1(i,1))*(semaxv(i,1)-ybar1(i,1))
     end do Loop11
 
-!compute standard errors on the regression coefficients
+	!compute standard errors on the regression coefficients
 
     sigmasq = SSE1 / (nedraw-numv)
     Loop10: do i = 1,numz
@@ -514,18 +502,15 @@
 
     Rsq = 1.0d-0 - (SSE1/SST1)
 
-
     return
-    end subroutine GetTheta
 
+end subroutine GetTheta
 
+!****************************************************
+! Subroutine that does matrix multiplication
+!****************************************************
 
-    !****************************************************
-    ! Subroutine that does matrix multiplication
-    !****************************************************
-
-
-    subroutine matpd(n1,m1,k1,a1,b1,c1)
+subroutine matpd(n1,m1,k1,a1,b1,c1)
 
     implicit none
 
@@ -534,15 +519,19 @@
     real(8) s1
 
     do 91 i =1,n1
-     do 90 j = 1,k1
-      s1 = 0.0d-0
-      do 80 ii=1,m1
-         s1 = s1+a1(i,ii)*b1(ii,j)
-    80        continue
+		do 90 j = 1,k1
+			s1 = 0.0d-0
+	do 80 ii=1,m1
+        s1 = s1+a1(i,ii)*b1(ii,j)
+		
+    80  continue
+	
       c1(i,j)=s1
-    90       continue
-    91    continue
+	  
+    90  continue
+    91  continue
 
     return
-    end subroutine matpd
+	
+end subroutine matpd
 
