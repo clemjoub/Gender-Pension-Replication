@@ -21,7 +21,10 @@ g mmpgqual=(mpenwithdraw==1130472)
 g fmpgqual=(fpenwithdraw==1130472)
 g mpasisqual=(mpenwithdraw==565236)
 g fpasisqual=(fpenwithdraw==565236)
-g fpasisqual2=(pasiscostopt>0 & pasiscostopt!=. & (married==1 | female==1)) // slight difference with other definition
+g fpasisqual2=(pasiscostopt>0 & pasiscostopt!=. & (married==1 | female==1)) 
+
+* slight difference with other definition
+
 /* run: br folio clone year female married fpasisqual* pasiscostopt fpenwithdraw  mpenwithdraw if fpasisqual!=fpasisqual2
 */
 
@@ -72,8 +75,10 @@ g wcontdensgr=1*(wcontdens<0.25)+2*(wcontdens>=0.25 & wcontdens<0.85)+3*(wcontde
 g W_edugrp2 = 1*(wed<12)+2(wed>=12)
 g H_edugrp2 = 1*(hed<12)+2(hed>=12)
 */
+
 g hagegrp3=3*int(hage/3) if female==0 | married==1
 g wagegrp3=3*int(wage/3) if female==1 | married==1
 
 g hfexpergrp=10*int(hfexper/10) if female==0 | married==1
 g wfexpergrp=10*int(wfexper/10) if female==1 | married==1
+

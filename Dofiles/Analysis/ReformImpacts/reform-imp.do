@@ -1,23 +1,27 @@
 clear
 clear matrix
 clear mata
-set mem 3000000
 
+ * path
+	 if c(username)=="WB452275" {
+		global path "C:\Users\WB452275\Documents\GitHub\gender-pension\"
+	 global tablepath = "C:\Users\WB452275\Documents\GitHub\gender-pension-draft\Tables"
+}
+	 else if c(username)=="clement" {
+		global path "C:\Users\clement\Dropbox\Projects\Genderequity"
+	 }
+		else{
+		global path "C:\Genderequity"
+	 global tablepath = "C:\Genderequity\Tables"
+}
+ 
+global dopath "$path\Dofiles\Analysis\ReformImpacts"
 
- if c(username)=="WB452275" {
- 
- global path "C:\Users\WB452275\Documents\GitHub\gender-pension\"
- }
- else {
- global path "C:\Users\clement\Dropbox\Projects\Genderequity"
- }
- 
-global dopath "$path\Dofiles\Reform_analysis"
 global oldsyspath = "$path\Counterfactuals\0\outputs"
 global resultspath = "$path\Counterfactuals\1\outputs"
 *global oldsyspath = "$path\reformimp\outputs"
 global graphpath= "$resultspath\..\reformimp\"
-global tablepath = "C:\Users\WB452275\Documents\GitHub\gender-pension-draft\Tables"
+
 global weights ="[aw=weights06]"
 
 
@@ -32,6 +36,7 @@ global loaddata 1
 if $loaddata ==1 {
 	do $path\Dofiles\comparedatasets.do
 }
+
 use "$resultspath\comparedataSRI.dta", clear
 
 sort folio
@@ -45,7 +50,8 @@ cd "$resultspath"
 
 global fittables="$tablepath\fittables"
 
-do $dopath/variabledefs.do
+do $dopath\variabledefs.do
+
 
 global year = "year>2009 & year<2016"
 global Tub = 75
@@ -93,13 +99,14 @@ table female if year>2008 & year<2020 & hhage>59 & hhage<66, c(mean LFP_sim)
 
 */
 
-do $dopath/graphspensions3.do
-*do $dopath/graphscoverage.do
-*do $dopath/graphscoveragechge.do
-*do $dopath/graphsLFP.do
-*do $dopath/graphsLPFchge.do
-*do $dopath/graphssavings.do
-do $dopath/graphsinequality.do
+do $dopath\graphspensions3.do
+*do $dopath\graphscoverage.do
+*do $dopath\graphscoveragechge.do
+*do $dopath\graphsLFP.do
+*do $dopath\graphsLPFchge.do
+*do $dopath\graphssavings.do
+do $dopath\graphsinequality.do
+
 
 
 /*

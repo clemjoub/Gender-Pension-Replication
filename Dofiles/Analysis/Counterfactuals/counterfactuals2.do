@@ -5,24 +5,30 @@
 	clear mata
 	set mem 30000000
 	set seed 1
+	
 
 	* path
 	 if c(username)=="WB452275" {
 		global path "C:\Users\WB452275\Documents\GitHub\gender-pension\"
+    global datapath "C:\Users\wb452275\Dropbox\DATA\"
 	 }
-	 else {
+	 else if c(username)=="clement" {
 		global path "C:\Users\clement\Dropbox\Projects\Genderequity"
 	 }
-	global dopath "$path\dofiles\counterfactuals"
-	global resultspath = "$path\Counterfactuals\"
+		else{
+		global path "C:\Genderequity"
+	 }
+	 
+	global dopath "$path\Dofiles\Analysis\Counterfactuals"
+	global resultspath = "$path\Counterfactuals"
 	*global graphpath = "C:\Users\clement\Dropbox\Projects\Genderequity\draft\draft032016\Graphs"
 	*global tablepath = "C:\Users\clement\Dropbox\Projects\Genderequity\draft\draft032016\Tables"
-	global graphpath= "C:\Users\wb452275\Documents\GitHub\gender-pension-draft\Figures\"
-	global tablepath = "C:\Users\wb452275\Documents\GitHub\gender-pension-draft\Tables\"
+	global graphpath= "$path\Figures\"
+	global tablepath = "$path\Tables\"
 
 	* variables and parameters
-	global varlist1 ///
-		"id year clone type married female wage hage shw sww sformh sformw savrate pensionw pensionh wealth numk kidnow hexper hfexper wexper wfexper earnh earnw mpenwithdraw fpenwithdraw hed wed sdiv tax_paidopt spsmcostopt spsfcostopt fmpgcostopt mmpgcostopt pasiscostopt supplement util consumption wdeath hdeath halive walive"
+	global varlist1 "id year clone type married female wage hage shw sww sformh sformw savrate pensionw pensionh wealth numk kidnow hexper hfexper wexper wfexper earnh earnw mpenwithdraw fpenwithdraw hed wed sdiv tax_paidopt spsmcostopt spsfcostopt fmpgcostopt mmpgcostopt pasiscostopt supplement util consumption wdeath hdeath halive walive"
+
 	*global year = "year>2008 & year<2020"
 	global Tub = 75
 	global Tlb = 36
@@ -33,11 +39,12 @@
 	global load = 0
 	
 	* define samples
-/*	global samplenewretirees="hhagegroup5==65 & year>2009 & year<2029" //impacts on variables at retirement age
-	global sampleatret="hhage==64 & year>2009 & year<2029" //impacts on variables at retirement age
-	global samplenearretirement="hhagegroup5==60 & year>2009 & year<2029" //impacts on behavior near retirement
-	global samplecosts="hhage>64 & year>2009 & year<2029" 		 //impacts on all retirees
-*/
+*	global samplenewretirees="hhagegroup5==65 & year>2009 & year<2029" //impacts on variables at retirement age
+*	global sampleatret="hhage==64 & year>2009 & year<2029" //impacts on variables at retirement age
+*	global samplenearretirement="hhagegroup5==60 & year>2009 & year<2029" //impacts on behavior near retirement
+*	global samplecosts="hhage>64 & year>2009 & year<2029" 		 //impacts on all retirees
+
+
 	
 	global samplegendergap="hhagegroup5==65 & year>2009 & year<2029" 				
 	global samplestocks="$samplegendergap" 									
@@ -45,10 +52,12 @@
 	global samplecosts="hhage>=60 & year>2009 & year<2029" 		 		
 	global samplesupplement="year>2007 & year<2029" 		 		
 	
-	global outputfile = "Tables_Draft"
+
+	global outputfile = "\Tables_Draft"
 	cd "$path"
 
-**DATA******************************************************************************
+	**DATA******************************************************************************
+
 	
 	
 	***load data
@@ -61,7 +70,15 @@
 	use "$resultspath\AppendedCounterfactuals", clear
 		rename id folio
 		capture drop _merge
-		merge m:1 folio using "C:\Users\wb452275\Dropbox\DATA\Chile\EPSsecondary\EPSsamples\EPSweights.dta"
+
+		if c(username)=="WB452275" {
+    merge m:1 folio using "${datapath}\Chile\EPSsecondary\EPSsamples\EPSweights.dta"
+    }
+    else
+    {
+    		merge m:1 folio using "C:\Genderequity\DATA\RawData\EPSweights.dta"
+     }
+
 		*ta _merge
 		keep if inlist(_merge, 2,3)
 		*codebook weights04
@@ -71,7 +88,14 @@
 		drop if inlist(counterfactual,2,9)
 
 		do $path\dofiles\variabledefs.do
-		do $path\dofiles\counterfactuals\variabledefs_counterfactuals.do
+
+if c(username)=="WB452275" {
+    do $path\dofiles\counterfactuals\variabledefs_counterfactuals.do
+} 
+else
+{
+		do $path\dofiles\Analysis\counterfactuals\variabledefs_counterfactuals.do
+}
 
 	***label counterfactuals
 	label define counterfactual 0 "Old System" 1 "Baseline reform" 2 "14% contributions" 3 "Equal retirement age" 4 "Contribution split with non-working wife" 5 "Extra contribution for non-working wife" 6 "Gender neutral life tables" 7 "Reform without child bonus" 8 "Reform without divorce rule" 9 "Reform without APS" 10 "All features" 11 "Equal earning opportunities"
@@ -131,7 +155,31 @@
 **OUTPUTS******************************************************************************
 
 
-	use "$resultspath\CounterfactualsFigures.dta", clear
+	use "$resultspath\CounterfactualsFigures.dta", clear	
+	
+**Tabulate 99******************************************************************************	
+use "$resultspath\99.dta", clear
+
+tabulate W_edugrp, generate(W_edugrp)
+tabulate H_edugrp, generate(H_edugrp)
+tabstat married numk W_edugrp1 W_edugrp2 W_edugrp3 W_edugrp4 H_edugrp1 H_edugrp2 H_edugrp3 H_edugrp4 sww shw, by(type) s(mean) save
+mat T1 = r(Stat1)
+mat T2 = r(Stat2)
+mat T3 = r(Stat3)
+mat T4 = r(Stat4)
+putexcel set "Summary.xlsx"
+putexcel A1 = matrix(T1), names
+putexcel A3 = matrix(T2), names
+putexcel A5 = matrix(T3), names
+putexcel A7 = matrix(T4), names
+
+tab2xl W_edugrp  type using $tablepath$outputfile, col(1) row(1)
+tab2xl H_edugrp  type using $tablepath$outputfile, col(1) row(8)
+tab2xl HH_edugrp  type using $tablepath$outputfile, col(1) row(15)
+tab2xl married  type using $tablepath$outputfile, col(1) row(22)
+tab2xl numk  type using $tablepath$outputfile, col(1) row(27)
+tab2xl LFP  type using $tablepath$outputfile, col(1) row(36)
+
 	
 	replace numk=1 if numk==2
 	replace numk=3 if numk>3 & numk!=.
@@ -146,42 +194,56 @@
 	* Impacts on the Gender Gap
 	
 	g pensionquartile = .
-		foreach count in $counterfactuals { //creates quartiles that are specific to each gender in each counterfactual
+ 
+ foreach count in $counterfactuals { 
+	*creates quartiles that are specific to each gender in each counterfactual
+
 		foreach gender in 0 1 {
 			di "`count' `gender'"
 			capture drop temp
 			xtile temp = penwithdraw  		if $samplegendergap & female==`gender' & counterfactual==`count' [aw=weights06], n(3) 
 			replace pensionquartile= temp 	if $samplegendergap & female==`gender' & counterfactual==`count'
 		}
-		}	
+	}	
 		
-	putexcel set "$tablepath/$outputfile", modify sheet(CounterfGap)
+	putexcel set "$tablepath$outputfile", modify sheet(CounterfGap)
 	
-	local var = "penwithdraw"	// outcome of interest
+	local var = "penwithdraw"	
+	* outcome of interest
 		
-	local varlist = "ones pensionquartile hhfexpergrp HH_edugrp married numk" // subgroups
+	local varlist = "ones pensionquartile hhfexpergrp HH_edugrp married numk" 
+	* subgroups
 	
 	foreach var2 of varlist `varlist' {
-	preserve	
-		levelsof `var2', local(var2groups) // values of subgroup
+		preserve	
+		levelsof `var2', local(var2groups) 
+		* values of subgroup
 		display "subgroup `var2' takes values `var2groups'"
 		
-		collapse (mean) `var' = `var' (count) nobs = penwithdraw if $samplegendergap [aw=weights06], by (counterfactual female `var2') // computes the mean pension benefit for each subgroup
+		collapse (mean) `var' = `var' (count) nobs = penwithdraw if $samplegendergap [aw=weights06], by (counterfactual female `var2') 
+		* computes the mean pension benefit for each subgroup
 		codebook female `var2'
-		g group_female=`var2'*1000+female // split subgroups by gender
+		keep if `var2'!=.
+		g group_female=`var2'*1000+female 
+		* split subgroups by gender
+
 		drop female `var2'
 		reshape wide `var' nobs, i(counterfactual) j(group_female)
 		local varlist = ""
 		
-		foreach group in `var2groups' { // for each value of the subgroup variable
+		foreach group in `var2groups' { 
+		* for each value of the subgroup variable
 			local suffixmale= `group'*1000+0
 			local suffixfemale= `group'*1000+1
-			g genderratio_`group'=(`var'`suffixmale'-`var'`suffixfemale')/`var'`suffixmale'  //computes the % difference between the mean female and male pension for each subgroup
+			g genderratio_`group'=(`var'`suffixmale'-`var'`suffixfemale')/`var'`suffixmale'  
+			*computes the % difference between the mean female and male pension for each subgroup
+
 			local varlist = "`varlist'" + " genderratio_`group'"
 		}
 		sort counterfactual
 		mkmat  `varlist', mat(`var'_`var2')
-	restore
+		restore
+
 	}
 	
 	putexcel C5  = matrix(penwithdraw_ones')
@@ -195,9 +257,9 @@
 	* labor supply before retirement
 	
 	foreach var of varlist LFP {
-	preserve
-	putexcel set "$tablepath/$outputfile", modify sheet(CounterfBehav)
-		
+		preserve
+		putexcel set "$tablepath$outputfile", modify sheet(CounterfBehav)
+			
 		collapse `var' if $samplelaborsupply [aw=weights06], by(counterfactual sex)
 		g group=sex
 		levelsof group, local(var2groups)
@@ -206,12 +268,14 @@
 		
 		local varlist =""
 		foreach group in `var2groups' {
-		local varlist = "`varlist'" + " `var'`group'"
+			local varlist = "`varlist'" + " `var'`group'"
+
 		}
 		
 		di "`varlist'"
 		mkmat  `varlist', mat(`var'mat)			
-	restore
+		restore
+
 	}
 	putexcel M6 = matrix(LFPmat')
 	*putexcel M12 = matrix(sformmat')
@@ -220,21 +284,22 @@
 	
 	foreach var of varlist hhfexper pension {
 	preserve
-	putexcel set "$tablepath/$outputfile", modify sheet(CounterfBehav)
+	putexcel set "$tablepath$outputfile", modify sheet(CounterfBehav)
 		
-		collapse `var' if $samplestocks [aw=weights06], by(counterfactual sex)
-		g group=sex
-		levelsof group, local(var2groups)
-		drop sex
-		reshape wide `var', i(counterfactual) j(group)	
-		
-		local varlist =""
-		foreach group in `var2groups' {
+	collapse `var' if $samplestocks [aw=weights06], by(counterfactual sex)
+	g group=sex
+	levelsof group, local(var2groups)
+	drop sex
+	reshape wide `var', i(counterfactual) j(group)	
+	
+	local varlist =""
+	foreach group in `var2groups' {
 		local varlist = "`varlist'" + " `var'`group'"
-		}
-		
-		di "`varlist'"
-		mkmat  `varlist', mat(`var'mat)			
+	}
+	
+	di "`varlist'"
+	mkmat  `varlist', mat(`var'mat)			
+
 	restore
 	}
 	putexcel M9 = matrix(hhfexpermat')
@@ -244,29 +309,32 @@
 	
 	foreach var of varlist wealth {
 	preserve
-	putexcel set "$tablepath/$outputfile", modify sheet(CounterfBehav)
-		collapse `var' if $samplestocks [aw=weights06], by(counterfactual ones)
-		g group=ones
-		levelsof group, local(var2groups)
-		reshape wide `var', i(counterfactual) j(group)	
-		
-		local varlist =""
-		foreach group in `var2groups' {
+	putexcel set "$tablepath$outputfile", modify sheet(CounterfBehav)
+	collapse `var' if $samplestocks [aw=weights06], by(counterfactual ones)
+	g group=ones
+	levelsof group, local(var2groups)
+	reshape wide `var', i(counterfactual) j(group)	
+	
+	local varlist =""
+	foreach group in `var2groups' {
 		local varlist = "`varlist'" + " `var'`group'"
-		}
-		
-		di "`varlist'"
-		mkmat  `varlist', mat(`var'mat)			
+	}
+	
+	di "`varlist'"
+	mkmat  `varlist', mat(`var'mat)			
 	restore
 	}
+	
+
 	putexcel M15 = matrix(wealthmat')
 
 
 	* program costs over all retirees
-local l=18
+	local l=18
 	foreach var of varlist  spsmcostopt   spsfcostopt   fmpgcostopt   mmpgcostopt  pasiscostopt  {
-	preserve
-	putexcel set "$tablepath/$outputfile", modify sheet(CounterfBehav)
+		preserve
+		putexcel set "$tablepath$outputfile", modify sheet(CounterfBehav)
+
 		collapse (sum) `var' if $samplecosts [aw=weights06], by(counterfactual ones)
 		g group=ones
 		levelsof group, local(var2groups)
@@ -274,19 +342,22 @@ local l=18
 		
 		local varlist =""
 		foreach group in `var2groups' {
-		local varlist = "`varlist'" + " `var'`group'"
+			local varlist = "`varlist'" + " `var'`group'"
+
 		}
 		
 		di "`varlist'"
 		mkmat  `varlist', mat(`var'mat)			
-	putexcel M`l' = matrix(`var'mat')
-	restore
-	local l=`l'+1
+		putexcel M`l' = matrix(`var'mat')
+		restore
+		local l=`l'+1
+
 	}
 
 foreach var of varlist supplement  {
 	preserve
-	putexcel set "$tablepath/$outputfile", modify sheet(CounterfBehav)
+	putexcel set "$tablepath$outputfile", modify sheet(CounterfBehav)
+
 		collapse (sum) `var' if $samplesupplement [aw=weights06], by(counterfactual ones)
 		g group=ones
 		levelsof group, local(var2groups)
@@ -369,3 +440,6 @@ foreach var of varlist supplement  {
 
 	
 	table female married year  if  hhage>59 & hhage<66,by(counterfactual) c(mean spsmcostopt mean spsfcostopt mean fmpgcostopt mean mmpgcostopt mean pasiscostopt)
+	/*
+	
+

@@ -7,7 +7,8 @@ sort folio year clone
 
 
 *putexcel set "$tablepath/Tables_Draft", modify sheet(Covchge)
-putexcel set "$tablepath/Tables_Draft", modify sheet(CondCovchge)
+putexcel set "$tablepath\Tables_Draft", modify sheet(CondCovchge)
+
 
 *local restriction2="(hagegrp>49 & hagegrp<65 & female==0 & hage>$Tlb+year-2004)"
 *local restriction3="(wagegrp>49 & wagegrp<65 & female==1 & wage>$Tlb+year-2004)"

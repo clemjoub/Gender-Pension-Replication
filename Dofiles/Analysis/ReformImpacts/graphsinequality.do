@@ -32,7 +32,8 @@ global population = "$year & hhagegrp2>64"
 
 local graphoptions= `" graphregion(color(white))"'
 ***
-local outfile = "$graphpath\lorenzpens"
+local outfile = "$graphpathlorenzpens"
+
 local titlemacro = `"title("Lorenz curve of invidual pensions") subtitle("Individuals over 65")"'
 
 preserve
@@ -60,7 +61,8 @@ restore
 
 
 graph combine tempind.gph temphh.gph, r(1) c(2) graphregion(color(white)) 
-graph export `outfile'.$graphformat, replace $exportoptions
+graph export `outfile'Figure7.$graphformat, replace $exportoptions
+
 
 /*
 ***
@@ -104,7 +106,9 @@ graph export `outfile'.$graphformat, replace $exportoptions
 
 restore
 */
-local outfile = "$graphpath\lorenz"
+
+local outfile = "$graphpathlorenz"
+
 
 grc1leg temp1.gph temp2.gph, r(2) c(2) leg(temp2.gph) graphregion(color(white)) 
 graph export `outfile'.$graphformat, replace $exportoptions

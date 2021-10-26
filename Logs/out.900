@@ -1,0 +1,424 @@
+Initidir /pine/scr/i/s/isuvorov/GenderequityMR, Sourcedir , Dir, Counterfactuals/9
+Start: Current date and time %s\n 
+ pre evfun
+ evfun
+ numfam=        6109 nyrs=          26 nsimul=           2 nvar1=          24
+ simdata1
+ simdatar2
+ simdiv
+ simdeath
+ simtyp
+ allocated sim arrays
+ allocated emax
+ working on age          90
+ ct           1 age          90 tp           1 grp           1 ref           1
+ ct           1 age          90 tp           1 grp           2 ref           1
+ ct           1 age          90 tp           1 grp           3 ref           1
+ working on age          89
+ ct           1 age          89 tp           1 grp           1 ref           1
+ ct           1 age          89 tp           1 grp           2 ref           1
+ ct           1 age          89 tp           1 grp           3 ref           1
+ working on age          88
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          91
+ ct           1 age          88 tp           1 grp           1 ref           1
+ ct           1 age          88 tp           1 grp           2 ref           1
+ ct           1 age          88 tp           1 grp           3 ref           1
+ working on age          87
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          91
+ too few non-zeros for regressor          92
+ too few non-zeros for regressor          96
+ too few non-zeros for regressor         100
+ ct           1 age          87 tp           1 grp           1 ref           1
+ ct           1 age          87 tp           1 grp           2 ref           1
+ ct           1 age          87 tp           1 grp           3 ref           1
+ working on age          86
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          89
+ too few non-zeros for regressor          91
+ too few non-zeros for regressor          92
+ too few non-zeros for regressor          93
+ too few non-zeros for regressor          96
+ too few non-zeros for regressor          97
+ too few non-zeros for regressor         100
+ ct           1 age          86 tp           1 grp           1 ref           1
+ ct           1 age          86 tp           1 grp           2 ref           1
+ ct           1 age          86 tp           1 grp           3 ref           1
+ working on age          85
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          89
+ too few non-zeros for regressor          91
+ too few non-zeros for regressor          92
+ too few non-zeros for regressor          93
+ too few non-zeros for regressor          96
+ too few non-zeros for regressor          97
+ too few non-zeros for regressor         100
+ ct           1 age          85 tp           1 grp           1 ref           1
+ ct           1 age          85 tp           1 grp           2 ref           1
+ noone in apvsegment          33
+ ct           1 age          85 tp           1 grp           3 ref           1
+ working on age          84
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          89
+ too few non-zeros for regressor          91
+ too few non-zeros for regressor          92
+ too few non-zeros for regressor          93
+ too few non-zeros for regressor          96
+ too few non-zeros for regressor          97
+ too few non-zeros for regressor         100
+ ct           1 age          84 tp           1 grp           1 ref           1
+ ct           1 age          84 tp           1 grp           2 ref           1
+ ct           1 age          84 tp           1 grp           3 ref           1
+ working on age          83
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          89
+ too few non-zeros for regressor          91
+ too few non-zeros for regressor          92
+ too few non-zeros for regressor          93
+ too few non-zeros for regressor          96
+ too few non-zeros for regressor          97
+ too few non-zeros for regressor         100
+ ct           1 age          83 tp           1 grp           1 ref           1
+ ct           1 age          83 tp           1 grp           2 ref           1
+ too few non-zeros for regressor          34
+ too few non-zeros for regressor          81
+ ct           1 age          83 tp           1 grp           3 ref           1
+ working on age          82
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          89
+ too few non-zeros for regressor          91
+ too few non-zeros for regressor          92
+ too few non-zeros for regressor          93
+ too few non-zeros for regressor          96
+ too few non-zeros for regressor          97
+ too few non-zeros for regressor         100
+ ct           1 age          82 tp           1 grp           1 ref           1
+ ct           1 age          82 tp           1 grp           2 ref           1
+ too few non-zeros for regressor          34
+ too few non-zeros for regressor          81
+ ct           1 age          82 tp           1 grp           3 ref           1
+ working on age          81
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          89
+ too few non-zeros for regressor          91
+ too few non-zeros for regressor          92
+ too few non-zeros for regressor          93
+ too few non-zeros for regressor          96
+ too few non-zeros for regressor          97
+ too few non-zeros for regressor         100
+ ct           1 age          81 tp           1 grp           1 ref           1
+ too few non-zeros for regressor          34
+ too few non-zeros for regressor          81
+ ct           1 age          81 tp           1 grp           2 ref           1
+ ct           1 age          81 tp           1 grp           3 ref           1
+ working on age          80
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          89
+ too few non-zeros for regressor          91
+ too few non-zeros for regressor          92
+ too few non-zeros for regressor          93
+ too few non-zeros for regressor          96
+ too few non-zeros for regressor          97
+ too few non-zeros for regressor         100
+ ct           1 age          80 tp           1 grp           1 ref           1
+ too few non-zeros for regressor          34
+ too few non-zeros for regressor          81
+ ct           1 age          80 tp           1 grp           2 ref           1
+ too few non-zeros for regressor          34
+ too few non-zeros for regressor          81
+ noone in apvsegment          33
+ ct           1 age          80 tp           1 grp           3 ref           1
+ working on age          79
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          89
+ too few non-zeros for regressor          91
+ too few non-zeros for regressor          92
+ too few non-zeros for regressor          93
+ too few non-zeros for regressor          96
+ too few non-zeros for regressor          97
+ too few non-zeros for regressor         100
+ ct           1 age          79 tp           1 grp           1 ref           1
+ too few non-zeros for regressor          34
+ too few non-zeros for regressor          81
+ ct           1 age          79 tp           1 grp           2 ref           1
+ too few non-zeros for regressor          34
+ too few non-zeros for regressor          81
+ ct           1 age          79 tp           1 grp           3 ref           1
+ working on age          78
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          89
+ too few non-zeros for regressor          91
+ too few non-zeros for regressor          92
+ too few non-zeros for regressor          93
+ too few non-zeros for regressor          96
+ too few non-zeros for regressor          97
+ too few non-zeros for regressor         100
+ ct           1 age          78 tp           1 grp           1 ref           1
+ too few non-zeros for regressor          34
+ too few non-zeros for regressor          81
+ ct           1 age          78 tp           1 grp           2 ref           1
+ too few non-zeros for regressor          33
+ too few non-zeros for regressor          38
+ too few non-zeros for regressor          80
+ noone in apvsegment          34
+ ct           1 age          78 tp           1 grp           3 ref           1
+ working on age          77
+ too few non-zeros for regressor          34
+ too few non-zeros for regressor          81
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          89
+ too few non-zeros for regressor          91
+ too few non-zeros for regressor          92
+ too few non-zeros for regressor          93
+ too few non-zeros for regressor          96
+ too few non-zeros for regressor          97
+ too few non-zeros for regressor         100
+ ct           1 age          77 tp           1 grp           1 ref           1
+ too few non-zeros for regressor          33
+ too few non-zeros for regressor          38
+ too few non-zeros for regressor          80
+ noone in apvsegment          34
+ ct           1 age          77 tp           1 grp           2 ref           1
+ ct           1 age          77 tp           1 grp           3 ref           1
+ working on age          76
+ too few non-zeros for regressor          34
+ too few non-zeros for regressor          81
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          89
+ too few non-zeros for regressor          91
+ too few non-zeros for regressor          92
+ too few non-zeros for regressor          93
+ too few non-zeros for regressor          96
+ too few non-zeros for regressor          97
+ too few non-zeros for regressor         100
+ ct           1 age          76 tp           1 grp           1 ref           1
+ too few non-zeros for regressor          34
+ too few non-zeros for regressor          81
+ ct           1 age          76 tp           1 grp           2 ref           1
+ too few non-zeros for regressor          33
+ too few non-zeros for regressor          38
+ too few non-zeros for regressor          80
+ noone in apvsegment          34
+ ct           1 age          76 tp           1 grp           3 ref           1
+ working on age          75
+ too few non-zeros for regressor          34
+ too few non-zeros for regressor          81
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          89
+ too few non-zeros for regressor          91
+ too few non-zeros for regressor          92
+ too few non-zeros for regressor          93
+ too few non-zeros for regressor          96
+ too few non-zeros for regressor          97
+ too few non-zeros for regressor         100
+ ct           1 age          75 tp           1 grp           1 ref           1
+ too few non-zeros for regressor          33
+ too few non-zeros for regressor          38
+ too few non-zeros for regressor          80
+ noone in apvsegment          34
+ ct           1 age          75 tp           1 grp           2 ref           1
+ too few non-zeros for regressor          33
+ too few non-zeros for regressor          38
+ too few non-zeros for regressor          80
+ noone in apvsegment          34
+ ct           1 age          75 tp           1 grp           3 ref           1
+ working on age          74
+ too few non-zeros for regressor          34
+ too few non-zeros for regressor          81
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          89
+ too few non-zeros for regressor          91
+ too few non-zeros for regressor          92
+ too few non-zeros for regressor          93
+ too few non-zeros for regressor          96
+ too few non-zeros for regressor          97
+ too few non-zeros for regressor         100
+ ct           1 age          74 tp           1 grp           1 ref           1
+ too few non-zeros for regressor          33
+ too few non-zeros for regressor          38
+ too few non-zeros for regressor          59
+ too few non-zeros for regressor          80
+ noone in apvsegment          34
+ ct           1 age          74 tp           1 grp           2 ref           1
+ too few non-zeros for regressor          33
+ too few non-zeros for regressor          38
+ too few non-zeros for regressor          80
+ noone in apvsegment          34
+ ct           1 age          74 tp           1 grp           3 ref           1
+ working on age          73
+ too few non-zeros for regressor          34
+ too few non-zeros for regressor          81
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          89
+ too few non-zeros for regressor          91
+ too few non-zeros for regressor          92
+ too few non-zeros for regressor          93
+ too few non-zeros for regressor          96
+ too few non-zeros for regressor          97
+ too few non-zeros for regressor         100
+ ct           1 age          73 tp           1 grp           1 ref           1
+ too few non-zeros for regressor          33
+ too few non-zeros for regressor          38
+ too few non-zeros for regressor          80
+ noone in apvsegment          34
+ ct           1 age          73 tp           1 grp           2 ref           1
+ too few non-zeros for regressor          33
+ too few non-zeros for regressor          38
+ too few non-zeros for regressor          80
+ noone in apvsegment          34
+ ct           1 age          73 tp           1 grp           3 ref           1
+ working on age          72
+ too few non-zeros for regressor          34
+ too few non-zeros for regressor          81
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          89
+ too few non-zeros for regressor          91
+ too few non-zeros for regressor          92
+ too few non-zeros for regressor          93
+ too few non-zeros for regressor          96
+ too few non-zeros for regressor          97
+ too few non-zeros for regressor         100
+ ct           1 age          72 tp           1 grp           1 ref           1
+ too few non-zeros for regressor          33
+ too few non-zeros for regressor          38
+ too few non-zeros for regressor          80
+ noone in apvsegment          34
+ ct           1 age          72 tp           1 grp           2 ref           1
+ ct           1 age          72 tp           1 grp           3 ref           1
+ working on age          71
+ too few non-zeros for regressor          34
+ too few non-zeros for regressor          81
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          89
+ too few non-zeros for regressor          91
+ too few non-zeros for regressor          92
+ too few non-zeros for regressor          93
+ too few non-zeros for regressor          96
+ too few non-zeros for regressor          97
+ too few non-zeros for regressor         100
+ ct           1 age          71 tp           1 grp           1 ref           1
+ too few non-zeros for regressor          33
+ too few non-zeros for regressor          38
+ too few non-zeros for regressor          80
+ noone in apvsegment          34
+ ct           1 age          71 tp           1 grp           2 ref           1
+ ct           1 age          71 tp           1 grp           3 ref           1
+ working on age          70
+ too few non-zeros for regressor          34
+ too few non-zeros for regressor          81
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          89
+ too few non-zeros for regressor          91
+ too few non-zeros for regressor          92
+ too few non-zeros for regressor          93
+ too few non-zeros for regressor          96
+ too few non-zeros for regressor          97
+ too few non-zeros for regressor         100
+ ct           1 age          70 tp           1 grp           1 ref           1
+ too few non-zeros for regressor          33
+ too few non-zeros for regressor          38
+ too few non-zeros for regressor          80
+ noone in apvsegment          34
+ ct           1 age          70 tp           1 grp           2 ref           1
+ ct           1 age          70 tp           1 grp           3 ref           1
+ working on age          69
+ too few non-zeros for regressor          34
+ too few non-zeros for regressor          81
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          89
+ too few non-zeros for regressor          91
+ too few non-zeros for regressor          92
+ too few non-zeros for regressor          93
+ too few non-zeros for regressor          96
+ too few non-zeros for regressor          97
+ too few non-zeros for regressor         100
+ ct           1 age          69 tp           1 grp           1 ref           1
+ ct           1 age          69 tp           1 grp           2 ref           1
+ ct           1 age          69 tp           1 grp           3 ref           1
+ working on age          68
+ too few non-zeros for regressor          34
+ too few non-zeros for regressor          81
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          89
+ too few non-zeros for regressor          91
+ too few non-zeros for regressor          92
+ too few non-zeros for regressor          93
+ too few non-zeros for regressor          96
+ too few non-zeros for regressor          97
+ too few non-zeros for regressor         100
+ ct           1 age          68 tp           1 grp           1 ref           1
+ ct           1 age          68 tp           1 grp           2 ref           1
+ too few non-zeros for regressor          34
+ too few non-zeros for regressor          81
+ ct           1 age          68 tp           1 grp           3 ref           1
+ working on age          67
+ too few non-zeros for regressor          34
+ too few non-zeros for regressor          81
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          89
+ too few non-zeros for regressor          91
+ too few non-zeros for regressor          92
+ too few non-zeros for regressor          93
+ too few non-zeros for regressor          96
+ too few non-zeros for regressor          97
+ too few non-zeros for regressor         100
+ ct           1 age          67 tp           1 grp           1 ref           1
+ ct           1 age          67 tp           1 grp           2 ref           1
+ too few non-zeros for regressor          34
+ too few non-zeros for regressor          81
+ ct           1 age          67 tp           1 grp           3 ref           1
+ working on age          66
+ too few non-zeros for regressor          34
+ too few non-zeros for regressor          81
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          89
+ too few non-zeros for regressor          91
+ too few non-zeros for regressor          92
+ too few non-zeros for regressor          93
+ too few non-zeros for regressor          96
+ too few non-zeros for regressor          97
+ too few non-zeros for regressor         100
+ ct           1 age          66 tp           1 grp           1 ref           1
+ ct           1 age          66 tp           1 grp           2 ref           1
+ too few non-zeros for regressor          34
+ too few non-zeros for regressor          81
+ ct           1 age          66 tp           1 grp           3 ref           1
+ working on age          65
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          89
+ too few non-zeros for regressor          91
+ too few non-zeros for regressor          92
+ too few non-zeros for regressor          93
+ too few non-zeros for regressor          96
+ too few non-zeros for regressor          97
+ too few non-zeros for regressor         100
+ ct           1 age          65 tp           1 grp           1 ref           1
+ ct           1 age          65 tp           1 grp           2 ref           1
+ ct           1 age          65 tp           1 grp           3 ref           1
+ working on age          64
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          89
+ too few non-zeros for regressor          91
+ too few non-zeros for regressor          92
+ too few non-zeros for regressor          93
+ too few non-zeros for regressor          96
+ too few non-zeros for regressor          97
+ too few non-zeros for regressor         100
+ ct           1 age          64 tp           1 grp           1 ref           1
+ ct           1 age          64 tp           1 grp           2 ref           1
+ ct           1 age          64 tp           1 grp           3 ref           1
+ working on age          63
+ too few non-zeros for regressor          87
+ too few non-zeros for regressor          89
+ too few non-zeros for regressor          91
+ too few non-zeros for regressor          92
+ too few non-zeros for regressor          93
+ too few non-zeros for regressor          96
+ too few non-zeros for regressor          97
+ too few non-zeros for regressor         100
+ ct           1 age          63 tp           1 grp           1 ref           1
+ too few non-zeros for regressor         119
+ ct           1 age          63 tp           1 grp           2 ref           1
+ ct           1 age          63 tp           1 grp           3 ref           1
+ working on age          62

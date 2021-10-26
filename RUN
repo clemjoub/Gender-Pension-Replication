@@ -1,3 +1,8 @@
+#!/bin/bash
+
+# added top line to make sure it's a bash script
+# changed file permissions to make it executable
+
 ###################READ USER INPUT#################################
 echo "Press:"
 echo "(0) Debug"
@@ -7,8 +12,8 @@ echo "(3) Compute Standard Errors"
 #echo "(4) Calculate Weighting Matrices"
 echo "(5) Get Current Min"
 echo "(15) split large files"
-read  -n2 NUM
-#NUM=1
+#read  -n2 NUM
+NUM=1
 echo ""
 
 case $NUM in
@@ -47,7 +52,7 @@ sed -i "s@ibump = ..@ibump = 34@g"  			./source/prog1.f90
 sed -i "s@bumpsize = ...@bumpsize = 0\.1@g" 	./source/prog1.f90
 sed -i "s@bumpup = ..@bumpup = 0@g" 			./source/prog1.f90
 
-mpif90 -O0 -traceback -check bounds -check uninit -debug all -gen-interfaces -warn interfaces -fpe-all=3 -fp-model strict -r8 -heap-arrays -g -implicitnone -lmpi ./source/prog1.f90 -o d.out
+ifort -O0 -traceback -check bounds -check uninit -debug all -gen-interfaces -warn interfaces -fpe-all=3 -fp-model strict -r8 -heap-arrays -g -implicitnone -lmpi ./source/prog1.f90 -o d.out
 
 gdb ./d.out 
 ;;
@@ -65,7 +70,7 @@ for k in 15     #number of saving decisions
 do
 for c in 2     	#number of clones to simulate 
 do
-for pe in  99  	#index of counterfactuals (99 is for baseline run)
+for pe in  0  	#index of counterfactuals (99 is for baseline run)
 do
 
 	## if computing the gradient for standard errors (par>0), bump corresponding parameter up and down
@@ -73,29 +78,26 @@ do
 	for up in 0 2 
 	do
 		## Chose parameters for which gradient is being computed
-#		paramlist=`cat notexist$up` #subset of parameters for which the gradient was not computed yet 
+		#  paramlist=`cat notexist$up` #subset of parameters for which the gradient was not computed yet 
 		paramlist=" 0 "  			#0 when not computing the gradient
 		echo "$paramlist"	
 		
 		for par in $paramlist
 		do
 			## Chose local directory in which to store results, inputs and source code
-			echo "Working Directory?"; read  -n100 DIR;echo "$DIR"
-			#DIR=Counterfactuals/$pe
+			#echo "Working Directory?"; read  -n100 DIR;echo "$DIR"
+			DIR=Counterfactuals/$pe
 			#DIR=Gradient/$par/$up
 			#mkdir Gradient/$par
 			./routines/mkworkdir $DIR
 			
 			#import input and source files from another folder
-			SOURCEDIR=Current
-			./routines/getsourcedir $DIR $SOURCEDIR    
+			#SOURCEDIR=Current
+			#./routines/getsourcedir $DIR $SOURCEDIR    
 			
 			#create prog1.f90, which concatenates all subroutines
 			./routines/makeprog $DIR
 			
-			rm a.out
-			rm out.$pe$par$up
-
 			echo "Switch dir"
 			cd $DIR
 	
@@ -122,7 +124,6 @@ do
 			sed -i "s@...... Actual number@  $i Actual number@"       ./inputs/input.txt
 			sed -i "s@...... Number of Monte@    $j Number of Monte@"   ./inputs/input.txt
 			sed -i "s@...... number of people@    $c number of people@"   ./inputs/input.txt
-			sed -i 's@maxfam = .......@maxfam = 99999999@g' ./source/prog1.f90
 			sed -i 's@nyrs = ..@nyrs = 5@g' ./source/prog1.f90
 	
 	
@@ -132,10 +133,15 @@ do
 			case $pe in
 				## Baseline run
 				99)
-        			sed -i 's@skiploop = .@skiploop = 1@g' ./source/prog1.f90
+        			sed -i 's@skiploop = .@skiploop = 1@g' ./source/prog1.f90				
+				;;
+				## Baseline run
+				98)
+        			sed -i 's@skiploop = .@skiploop = 1@g' ./source/prog1.f90				
 				;;
 				## Old system
 				0)
+					sed -i 's@reform = .@reform = 0@'         ./source/prog1.f90
         			sed -i 's@nyrs = ..@nyrs = 26@g' ./source/prog1.f90
 				;;
 				## Reform
@@ -153,7 +159,7 @@ do
 				## Equating retirement age
 				3) 	
         			sed -i 's@reform = .@reform = 1@'         ./source/prog1.f90
-				sed -i 's@wageret_ref = ..@wageret_ref = 65@g' ./source/prog1.f90
+					sed -i 's@wageret_ref = ..@wageret_ref = 65@g' ./source/prog1.f90
         			sed -i 's@counterfactual = .@counterfactual = 3@'         ./source/prog1.f90
         			sed -i 's@nyrs = ..@nyrs = 26@g' ./source/prog1.f90
 				;;
@@ -198,13 +204,28 @@ do
 				;;
 				10)
         			sed -i 's@reform = .@reform = 1@'         ./source/prog1.f90
-				sed -i 's@wageret_ref = ..@wageret_ref = 65@g' ./source/prog1.f90
+					sed -i 's@wageret_ref = ..@wageret_ref = 65@g' ./source/prog1.f90
         			sed -i 's@counterfactual = ..@counterfactual = 10@'         ./source/prog1.f90
         			sed -i 's@nyrs = ..@nyrs = 26@g' ./source/prog1.f90
 				;;	
 				11)
         			sed -i 's@reform = .@reform = 1@'         ./source/prog1.f90
         			sed -i 's@counterfactual = ..@counterfactual = 11@'         ./source/prog1.f90
+        			sed -i 's@nyrs = ..@nyrs = 26@g' ./source/prog1.f90
+				;;
+				12)
+        			sed -i 's@reform = .@reform = 0@'         ./source/prog1.f90
+        			sed -i 's@skiploop = .@skiploop = 1@g' ./source/prog1.f90	
+					sed -i 's@wageret_baseline = ..@wageret_baseline = 65@g' ./source/prog1.f90	
+        			sed -i 's@counterfactual = ..@counterfactual = 12@'         ./source/prog1.f90
+        			sed -i 's@nyrs = ..@nyrs = 26@g' ./source/prog1.f90
+				;;
+				13)
+        			sed -i 's@reform = .@reform = 1@'         ./source/prog1.f90
+        			sed -i 's@noAPS = .@noAPS = 1@'         ./source/prog1.f90
+        			sed -i 's@nobono = .@nobono = 1@'         ./source/prog1.f90
+        			sed -i 's@nodivrule = .@nodivrule = 1@'         ./source/prog1.f90
+        			sed -i 's@counterfactual = ..@counterfactual = 13@'         ./source/prog1.f90
         			sed -i 's@nyrs = ..@nyrs = 26@g' ./source/prog1.f90
 				;;
 				esac
@@ -218,13 +239,13 @@ do
         			sed -i 's@silent=.@silent='"$SIL"'@'            		./source/prog1.f90
 	
 			echo "Compile code"
-				mpif90 -check bounds -r8 -heap-arrays -O2 -implicitnone  ./source/prog1.f90 -o b.out
+				ifort -check bounds -r8 -heap-arrays -O2 -implicitnone  ./source/prog1.f90 -o b.out
 				$INITDIR/routines/patch.pl b.out
 				diff $INITDIR/$SOURCEDIR/source/prog1.f90 $DIR/source/prog1.f90 > $INITDIR/Logs/out.$pe$par$up
 	
 			echo "Initidir $INITDIR, Sourcedir $SOURCEDIR, Dir, $DIR" >>$INITDIR/Logs/out.$pe$par$up
 	        echo "Start: Current date and time %s\n" "$now" >> $INITDIR/Logs/out.$pe$par$up
-	        		mpiexec -n 1 ./b.out infile.asc outfile.asc 1 >> $INITDIR/Logs/out.$pe$par$up &
+	        	     ./b.out infile.asc outfile.asc 1 >> $INITDIR/Logs/out.$pe$par$up
 	        
 			echo "Switch back dir"
 	        		cd $INITDIR
@@ -267,7 +288,7 @@ sed -i 's@silent = .@silent = 1@g' ./source/prog1.f90
 echo "Number of nodes"; read  -n10 NODES;
 
 cat ./source/readin.f90 ../routines/setapps.f90 > temp.f90
-mpif90 -g -o setapps.out ./temp.f90
+ifort -g -o setapps.out ./temp.f90
 ./setapps.out $NODES
 
 cp ./infile.asc ./inputs/infile.asc
@@ -278,7 +299,7 @@ if [ $CACHE == 0 ]; then
         rm Evaluated.txt
 fi
 
-mpif90 -r8 -heap-arrays -O2 -implicitnone -lmpi ./source/prog1.f90 -o a.out
+ifort -r8 -heap-arrays -O2 -implicitnone -lmpi ./source/prog1.f90 -o a.out
 ../routines/patch.pl a.out
 
 echo "working directory content";ls -R -t $DIR; echo ""
@@ -314,7 +335,7 @@ cd $DIR
 dos2unix ./source/*
 cat ./source/createmdata.f90 ./source/msm.f90 > ./source/prog2.f90
 
-mpif90 -O0 -traceback -check bounds -check uninit -debug all -gen-interfaces -warn interfaces -fpe-all=3 -fp-model strict -r8 -heap-arrays -g -implicitnone -lmpi ./source/prog2.f90 -o e.out
+ifort -O0 -traceback -check bounds -check uninit -debug all -gen-interfaces -warn interfaces -fpe-all=3 -fp-model strict -r8 -heap-arrays -g -implicitnone -lmpi ./source/prog2.f90 -o e.out
 
 gdb ./e.out  
 
