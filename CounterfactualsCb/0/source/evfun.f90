@@ -775,8 +775,8 @@ if (nosimul.eq.0) then
                 if (smarried.eq.1.and.wage.lt.60) then !only allow divorce until wife turns 60
                     r1=0.0d-0
 		    call ran1(idum,r1,1)
-					divorce_increase=0.01d-0
-					if (thisyear.gt.2008.and.reform.eq.1) divorce_increase=0.02d-0
+					divorce_increase=0.00d-0
+					if (thisyear.gt.2008.and.reform.eq.1) divorce_increase=0.01d-0
                     if (r1(1).lt.probvec(1)+divorce_increase) then !adjust in simulation for the fact that divorce rates increased (unanticipated)
                          sdiv = 1
                          snivart(2,1,(kk+1):(Tbar-15))=0 ! if divorce, household becomes unmarried
