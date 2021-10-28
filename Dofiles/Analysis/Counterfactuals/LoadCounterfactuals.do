@@ -9,7 +9,7 @@ use "$resultspath\AppendedCounterfactuals", clear
 forvalues c=1(1)13 {  	
 
 if (`c'==2 | `c'==9) {
-continue
+*continue
 }
 display "appending counterfactual `c'"
 infile $varlist1 using "$resultspath\\`c'\outputs\simdata.asc", clear

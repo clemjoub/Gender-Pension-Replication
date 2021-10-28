@@ -9,8 +9,8 @@
 
 	* path
 	 if c(username)=="WB452275" {
-		global path "C:\Users\WB452275\Documents\GitHub\gender-pension\"
-    global datapath "C:\Users\wb452275\Dropbox\DATA\"
+		global path "C:\Users\WB452275\OneDrive - WBG\Documents\GitHub\Gender-Pension-Replication\"
+		global datapath "C:\Users\wb452275\Dropbox\DATA\"
 	 }
 	 else if c(username)=="clement" {
 		global path "C:\Users\clement\Dropbox\Projects\Genderequity"
@@ -20,7 +20,7 @@
 	 }
 	 
 	global dopath "$path\Dofiles\Analysis\Counterfactuals"
-	global resultspath = "$path\Counterfactuals"
+	global resultspath = "$path\CounterfactualsA"
 	*global graphpath = "C:\Users\clement\Dropbox\Projects\Genderequity\draft\draft032016\Graphs"
 	*global tablepath = "C:\Users\clement\Dropbox\Projects\Genderequity\draft\draft032016\Tables"
 	global graphpath= "$path\Figures\"
@@ -36,7 +36,7 @@
 	global exportoptions = "width(800) height(600)"
 	global counterfactuals = "0 1 3 4 5 6 7 8 10"
 
-	global load = 0
+	global load = 1
 	
 	* define samples
 *	global samplenewretirees="hhagegroup5==65 & year>2009 & year<2029" //impacts on variables at retirement age
@@ -72,12 +72,12 @@
 		capture drop _merge
 
 		if c(username)=="WB452275" {
-    merge m:1 folio using "${datapath}\Chile\EPSsecondary\EPSsamples\EPSweights.dta"
-    }
+			merge m:1 folio using "${datapath}\Chile\EPSsecondary\EPSsamples\EPSweights.dta"
+		}
     else
-    {
+		{
     		merge m:1 folio using "C:\Genderequity\DATA\RawData\EPSweights.dta"
-     }
+		}
 
 		*ta _merge
 		keep if inlist(_merge, 2,3)
